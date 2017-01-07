@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-list.html">
+<link rel="import" href="../iron-feed.html">
 
 <dom-module id="x-list-with-bindings">
   <template>
@@ -27,14 +27,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         height: 100px;
       }
 
-      iron-list {
+      iron-feed {
         overflow: hidden;
         background-color: black;
         height: 300px;
       }
     </style>
 
-    <iron-list items="[[data]]" as="item" id="list">
+    <iron-feed items="[[data]]" as="item" id="list">
       <template>
         <div class="item">
           <div item-scope-binding>[[item.index]]</div>
@@ -42,7 +42,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div host-scope-subproperty-binding>[[propertyForPathChangeForwarding.text]]</div>
         </div>
       </template>
-    </iron-list>
+    </iron-feed>
   </template>
 
 </dom-module>

@@ -10,7 +10,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
-<link rel="import" href="../iron-list.html">
+<link rel="import" href="../iron-feed.html">
 
 <dom-module id="x-list">
   <template>
@@ -34,19 +34,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         background-color: red;
       }
 
-      iron-list {
+      iron-feed {
         background-color: black;
       }
     </style>
 
-    <iron-list style$="[[_computedListHeight(listHeight)]]" items="[[data]]" as="item" id="list">
+    <iron-feed style$="[[_computedListHeight(listHeight)]]" items="[[data]]" as="item" id="list">
       <template>
         <div class="item" tabindex$="[[_computedTabIndex(tabIndex, useTabIndex)]]">
           <div style$="[[_computedItemHeight(item)]]" tabindex="0" hidden$="[[primitive]]">[[item.index]]</div>
           <div style$="[[_computedItemHeight(item)]]" tabindex="0" hidden$="[[!primitive]]">[[item]]</div>
         </div>
       </template>
-    </iron-list>
+    </iron-feed>
   </template>
 
 </dom-module>

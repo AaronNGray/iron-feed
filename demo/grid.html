@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <!doctype html>
 <html>
 <head>
-  <title>Grid layout using iron-list</title>
+  <title>Grid layout using iron-feed</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
@@ -29,7 +29,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../iron-image/iron-image.html">
   <link rel="import" href="../../iron-scroll-threshold/iron-scroll-threshold.html">
   <link rel="import" href="../../paper-spinner/paper-spinner.html">
-  <link rel="import" href="../iron-list.html">
+  <link rel="import" href="../iron-feed.html">
 
   <style>
 
@@ -63,7 +63,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           color: white;
         }
 
-        iron-list {
+        iron-feed {
           margin-top: 90px;
           padding-bottom: 16px;
         }
@@ -142,7 +142,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         }
 
         @media (max-width: 400px) {
-          iron-list {
+          iron-feed {
             margin-top: 72px;
           }
 
@@ -182,7 +182,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </app-toolbar>
       </app-header>
 
-      <iron-list items="[[photos]]" as="photo" scroll-target="document" grid>
+      <iron-feed items="[[photos]]" as="photo" scroll-target="document" grid>
         <template>
           <div class="photoContainer">
             <div class="photoContent" tabindex$="[[tabIndex]]">
@@ -193,7 +193,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </div>
         </template>
-      </iron-list>
+      </iron-feed>
 
       <div class="loadingIndicator" hidden$="[[!loadingPhotos]]">
         <paper-spinner active$="[[loadingPhotos]]"></paper-spinner> Fetching photos for <b>[[searchText]]</b>

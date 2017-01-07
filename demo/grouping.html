@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
 
-  <title>Grouping items using iron-list</title>
+  <title>Grouping items using iron-feed</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1, user-scalable=no">
@@ -34,7 +34,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../iron-ajax/iron-ajax.html">
   <link rel="import" href="../../iron-image/iron-image.html">
-  <link rel="import" href="../iron-list.html">
+  <link rel="import" href="../iron-feed.html">
 
   <style>
     body {
@@ -73,7 +73,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
       #list {
         margin-top: 63px;
-        --iron-list-items-container: {
+        --iron-feed-items-container: {
           max-width: 800px;
           margin: 10px auto;
           border-bottom: 1px solid #ddd;
@@ -142,15 +142,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <div main-title>Grouping items</div>
       <paper-menu-button id="menu" dynamic-align>
         <paper-icon-button icon="filter-list" class="dropdown-trigger"></paper-icon-button>
-          <iron-list class="state-list dropdown-content" items="[[states]]">
+          <iron-feed class="state-list dropdown-content" items="[[states]]">
           <template>
             <paper-item on-click="_onStateClick">[[item.state]]</paper-item>
           </template>
-        </iron-list>
+        </iron-feed>
       </paper-menu-button>
     </app-toolbar>
 
-    <iron-list id="list" items="[[_generateGroupsFor(items)]]" scroll-target="document">
+    <iron-feed id="list" items="[[_generateGroupsFor(items)]]" scroll-target="document">
       <template>
         <div>
           <div class="group-header" hidden$="[[!_hasGroup(index)]]">[[item.state]]</div>
@@ -162,7 +162,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           </div>
         </div>
       </template>
-    </iron-list>
+    </iron-feed>
 
   </template>
 

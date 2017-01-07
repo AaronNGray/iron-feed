@@ -12,7 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
 
-  <title>iron-list demo</title>
+  <title>iron-feed demo</title>
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -23,7 +23,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../../paper-styles/demo-pages.html">
 
   <link rel="import" href="../../../iron-flex-layout/iron-flex-layout.html">
-  <link rel="import" href="../../iron-list.html">
+  <link rel="import" href="../../iron-feed.html">
   <link rel="import" href="dummy-data.html">
 
   <dom-module id="x-app">
@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           @apply(--layout-horizontal);
         }
 
-        iron-list {
+        iron-feed {
           @apply(--layout-flex);
           height: 100%;
         }
@@ -99,7 +99,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         <label><input type="checkbox" checked="{{showing::change}}">Show friends</label>
       </div>
 
-      <iron-list id="list1" items="{{data}}">
+      <iron-feed id="list1" items="{{data}}">
         <template>
           <div class="item">
             <div class="picture">
@@ -125,9 +125,9 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </div>
         </template>
-      </iron-list>
+      </iron-feed>
 
-      <iron-list id="list2" items="{{data}}">
+      <iron-feed id="list2" items="{{data}}">
         <template>
           <div class="item">
             <div class="picture">
@@ -153,7 +153,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             </div>
           </div>
         </template>
-      </iron-list>
+      </iron-feed>
 
     </template>
   </dom-module>

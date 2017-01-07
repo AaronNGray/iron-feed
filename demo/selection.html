@@ -35,7 +35,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../paper-item/paper-item.html">
   <link rel="import" href="../../paper-badge/paper-badge.html">
 
-  <link rel="import" href="../iron-list.html">
+  <link rel="import" href="../iron-feed.html">
 
 </head>
 
@@ -179,7 +179,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           line-height: 50px;
         }
 
-        iron-list {
+        iron-feed {
           @apply(--layout-flex);
         }
 
@@ -189,14 +189,14 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       <app-drawer-layout fullbleed>
         <div class="content">
           <app-toolbar class="pink-toolbar">
-            <div main-title>Selection using iron-list</div>
+            <div main-title>Selection using iron-feed</div>
             <div>
               <paper-icon-button icon="star" alt="Starred" drawer-toggle></paper-icon-button>
               <paper-badge label$="[[selectedItems.length]]"></paper-badge>
             </div>
           </app-toolbar>
           <!-- Main List for the items -->
-          <iron-list id="itemsList" items="[[data]]" selected-items="{{selectedItems}}" selection-enabled multi-selection>
+          <iron-feed id="itemsList" items="[[data]]" selected-items="{{selectedItems}}" selection-enabled multi-selection>
             <template>
               <div>
                 <div tabindex$="[[tabIndex]]" aria-label$="Select/Deselect [[item.name]]" class$="[[_computedClass(selected)]]">
@@ -212,7 +212,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 <div class="border"></div>
               </div>
             </template>
-          </iron-list>
+          </iron-feed>
         </div>
         <app-drawer align="right">
           <div class="content">
@@ -223,11 +223,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               <div class="no-selection">Select a contact</div>
             </template>
             <!-- List for the selected items -->
-            <iron-list id="selectedItemsList" items="[[selectedItems]]" hidden$="[[!selectedItems.length]]">
+            <iron-feed id="selectedItemsList" items="[[selectedItems]]" hidden$="[[!selectedItems.length]]">
               <template>
                 <paper-item tabindex$="[[tabIndex]]" on-tap="_unselect" aria-label$="Deselect [[item.name]]">[[item.name]]</paper-item>
               </template>
-            </iron-list>
+            </iron-feed>
           </div>
         </app-drawer>
       </app-drawer-layout>

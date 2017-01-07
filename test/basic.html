@@ -11,7 +11,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>iron-list test</title>
+  <title>iron-feed test</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 
   <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
@@ -149,7 +149,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     });
 
     test('scroll to index while not attached', function() {
-      var tmpList = document.createElement('iron-list');
+      var tmpList = document.createElement('iron-feed');
       Polymer.dom(tmpList).appendChild(document.createElement('template'));
       tmpList.items = buildDataSet(100);
       assert.equal(tmpList._virtualStart, 0);

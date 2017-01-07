@@ -24,7 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   <link rel="import" href="../../../polymer/polymer.html">
   <link rel="import" href="../../../paper-button/paper-button.html">
 
-  <link rel="import" href="../../iron-list.html">
+  <link rel="import" href="../../iron-feed.html">
 
   <style is="custom-style">
     body {
@@ -74,7 +74,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       z-index: 1;
     }
 
-    .wrapper iron-list {
+    .wrapper iron-feed {
       position: absolute;
       top: 0;
       left: 0;
@@ -103,7 +103,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
           <div id="scroller">
             <div class="fake-content"></div>
           </div>
-          <iron-list id="list1" as="item" items="[[items]]" scroll-target="scroller">
+          <iron-feed id="list1" as="item" items="[[items]]" scroll-target="scroller">
             <template>
               <div class="item" style$="[[_getStyle(item)]]"><span>[[index]]</span> height: <span>[[item]]</span>
               <div>
@@ -114,7 +114,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
               </div>
               </div>
             </template>
-          </iron-list>
+          </iron-feed>
 
       </div>
     </div>
