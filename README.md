@@ -2,7 +2,7 @@
 <!---
 
 This README is automatically generated from the comments in these files:
-iron-list.html
+iron-feed.html
 
 Edit those files, and our readme bot will duplicate them over here!
 Edit this file, and the bot will squash your changes :)
@@ -12,15 +12,15 @@ thing! https://github.com/PolymerLabs/tedium/issues
 
 -->
 
-[![Build status](https://travis-ci.org/PolymerElements/iron-list.svg?branch=master)](https://travis-ci.org/PolymerElements/iron-list)
+[![Build status](https://travis-ci.org/PolymerElements/iron-feed.svg?branch=master)](https://travis-ci.org/PolymerElements/iron-feed)
 
-_[Demo and API docs](https://elements.polymer-project.org/elements/iron-list)_
+_[Demo and API docs](https://elements.polymer-project.org/elements/iron-feed)_
 
 
-##&lt;iron-list&gt;
+##&lt;iron-feed&gt;
 
-`iron-list` displays a virtual, 'infinite' list. The template inside
-the iron-list element represents the DOM to create for each list item.
+`iron-feed` displays a virtual, 'infinite' list. The template inside
+the iron-feed element represents the DOM to create for each list item.
 The `items` property specifies an array of list item data.
 
 For performance reasons, not every item in the list is rendered at once;
@@ -30,8 +30,8 @@ state of the list template be bound to the model driving it, since the view may
 be reused with a new model at any time. Particularly, any state that may change
 as the result of a user interaction with the list item must be bound to the model
 to avoid view state inconsistency.
-### Sizing iron-list
-`iron-list` must either be explicitly sized, or delegate scrolling to an
+### Sizing iron-feed
+`iron-feed` must either be explicitly sized, or delegate scrolling to an
 explicitly sized parent. By "explicitly sized", we mean it either has an explicit
 CSS `height` property set via a class or inline style, or else is sized by other
 layout means (e.g. the `flex` or `fit` classes).
@@ -45,16 +45,16 @@ layout means (e.g. the `flex` or `fit` classes).
       display: flex;
       flex-direction: column;
     }
-    iron-list {
+    iron-feed {
       flex: 1 1 auto;
     }
   </style>
   <app-toolbar>App name</app-toolbar>
-  <iron-list items="[[items]]">
+  <iron-feed items="[[items]]">
     <template>
       ...
     </template>
-  </iron-list>
+  </iron-feed>
 </template>
 ```
 #### Explicit size - [jsbin](http://jsbin.com/pibefo/edit?html,output)
@@ -64,15 +64,15 @@ layout means (e.g. the `flex` or `fit` classes).
     :host {
       display: block;
     }
-    iron-list {
+    iron-feed {
       height: 100vh; /* don't use % values unless the parent element is sized. */
     }
   </style>
-  <iron-list items="[[items]]">
+  <iron-feed items="[[items]]">
     <template>
       ...
     </template>
-  </iron-list>
+  </iron-feed>
 </template>
 ```
 #### Main document scrolling - [jsbin](http://jsbin.com/cojuli/edit?html,output)
@@ -91,7 +91,7 @@ layout means (e.g. the `flex` or `fit` classes).
       left: 0;
       right: 0;
     }
-    iron-list {
+    iron-feed {
       /* add padding since the app-toolbar is fixed at the top */
       padding-top: 64px;
     }
@@ -100,11 +100,11 @@ layout means (e.g. the `flex` or `fit` classes).
 <body>
   <template is="dom-bind">
     <app-toolbar>App name</app-toolbar>
-    <iron-list scroll-target="document" items="[[items]]">
+    <iron-feed scroll-target="document" items="[[items]]">
       <template>
         ...
       </template>
-    </iron-list>
+    </iron-feed>
   </template>
 </body>
 ```
@@ -136,45 +136,45 @@ bound from the model object provided to the template scope):
 ```html
 <template is="dom-bind">
   <iron-ajax url="data.json" last-response="{{data}}" auto></iron-ajax>
-  <iron-list items="[[data]]" as="item">
+  <iron-feed items="[[data]]" as="item">
     <template>
       <div>
         Name: [[item.name]]
       </div>
     </template>
-  </iron-list>
+  </iron-feed>
 </template>
 ```
 ### Grid layout
-`iron-list` supports a grid layout in addition to linear layout by setting
+`iron-feed` supports a grid layout in addition to linear layout by setting
 the `grid` attribute.  In this case, the list template item must have both fixed
 width and height (e.g. via CSS). Based on this, the number of items
 per row are determined automatically based on the size of the list viewport.
 ### Accessibility
-`iron-list` automatically manages the focus state for the items. It also provides
+`iron-feed` automatically manages the focus state for the items. It also provides
 a `tabIndex` property within the template scope that can be used for keyboard navigation.
 For example, users can press the up and down keys to move to previous and next
 items in the list:
 ```html
-<iron-list items="[[data]]" as="item">
+<iron-feed items="[[data]]" as="item">
   <template>
     <div tabindex$="[[tabIndex]]">
       Name: [[item.name]]
     </div>
   </template>
-</iron-list>
+</iron-feed>
 ```
 ### Styling
-You can use the `--iron-list-items-container` mixin to style the container of items:
+You can use the `--iron-feed-items-container` mixin to style the container of items:
 ```css
-iron-list {
- --iron-list-items-container: {
+iron-feed {
+ --iron-feed-items-container: {
     margin: auto;
   };
 }
 ```
 ### Resizing
-`iron-list` lays out the items when it receives a notification via the `iron-resize` event.
+`iron-feed` lays out the items when it receives a notification via the `iron-resize` event.
 This event is fired by any element that implements `IronResizableBehavior`.
 
 By default, elements such as `iron-pages`, `paper-tabs` or `paper-dialog` will trigger
@@ -182,17 +182,17 @@ this event automatically. If you hide the list manually (e.g. you use `display: 
 you might want to implement `IronResizableBehavior` or fire this event manually right
 after the list became visible again. For example:
 ```js
-document.querySelector('iron-list').fire('iron-resize');
+document.querySelector('iron-feed').fire('iron-resize');
 ```
-### When should `<iron-list>` be used?
-`iron-list` should be used when a page has significantly more DOM nodes than the ones
+### When should `<iron-feed>` be used?
+`iron-feed` should be used when a page has significantly more DOM nodes than the ones
 visible on the screen. e.g. the page has 500 nodes, but only 20 are visible at the time.
 This is why we refer to it as a `virtual` list. In this case, a `dom-repeat` will still
-create 500 nodes which could slow down the web app, but `iron-list` will only create 20.
+create 500 nodes which could slow down the web app, but `iron-feed` will only create 20.
 
-However, having an `iron-list` does not mean that you can load all the data at once.
+However, having an `iron-feed` does not mean that you can load all the data at once.
 Say, you have a million records in the database, you want to split the data into pages
-so you can bring a page at the time. The page could contain 500 items, and iron-list
+so you can bring a page at the time. The page could contain 500 items, and iron-feed
 will only render 20.
 
 

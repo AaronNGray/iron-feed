@@ -8,10 +8,18 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
+<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
 <link rel="import" href="../polymer/polymer.html">
+
+<link rel="import" href="../iron-scroll-threshold/iron-scroll-threshold.html">
+
 <link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
 <link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
 <link rel="import" href="../iron-scroll-target-behavior/iron-scroll-target-behavior.html">
+
+<link rel="import" href="../paper-spinner/paper-spinner.html">
+<link rel="import" href="../iron-ajax/iron-ajax.html">
 
 <!--
 
@@ -250,6 +258,28 @@ will only render 20.
         width: 100%;
       };
 
+      .loadingIndicator {
+        text-align: center;
+        height: 40px;
+      }
+
+      .loadingIndicator paper-spinner {
+        width: 20px;
+        height: 20px;
+        margin-right: 10px;
+      }
+
+      iron-feed {
+        padding-top: 64px;
+        padding-bottom: 16px;
+        --iron-feed-items-container: {
+          max-width: 800px;
+          margin: auto;
+          margin-top: 60px;
+          margin-bottom: 10px;
+        };
+      }
+
       #items > ::content > * {
         box-sizing: border-box;
         margin: 0;
@@ -259,6 +289,13 @@ will only render 20.
       }
     </style>
 
+    <iron-ajax id="ajax"
+      url="{{url}}"
+      handle-as="json"
+      loading="{{loading}}"
+      on-response="_didRespond">
+    </iron-ajax>
+
     <array-selector id="selector" items="{{items}}"
       selected="{{selectedItems}}" selected-item="{{selectedItem}}">
     </array-selector>
@@ -266,6 +303,17 @@ will only render 20.
     <div id="items">
       <content></content>
     </div>
+
+    <div class="loadingIndicator">
+      <paper-spinner active="{{loading}}"></paper-spinner> Loading
+    </div>
+
+    <!-- this element will load more data when the user scrolls down and reached the lower threshold -->
+    <iron-scroll-threshold id="scrollTheshold"
+      lower-threshold="500"
+      on-lower-threshold="_loadMoreData"
+      scroll-target="html">
+    </iron-scroll-threshold>
 
   </template>
 </dom-module>
@@ -391,6 +439,10 @@ will only render 20.
       href: {
         type: "polymer",
         notify: true
+      },
+      chunk: {
+        type: Number,
+        value: 25
       },
       url: {
         computed: 'computeUrl(href)'
@@ -1835,11 +1887,26 @@ will only render 20.
     _didEnter: function(e) {
       this._focusPhysicalItem(this._focusedIndex);
       this._selectionHandler(e.detail.keyboardEvent);
-    }
+    },
 
     computeUrl: function(baseUrl) {
-      return baseUrl + "?" + "start=" + start + "&" + "limit=" + limit;
+      return [this.baseUrl, "?", "start=", this.items.length, "&", "limit=", this.chunk].join();
+    },
+
+    _loadMoreData: function() {
+      scope.$.ajax.generateRequest();
+    },
+
+    _didRespond: function(e) {
+      var items = e.detail.response;
+
+      items.forEach(function(item) {
+        this.$.list.push('items', item);
+      });
+      // Clear the lower threshold so we can load more data when the user scrolls down again.
+      this.$.scrollTheshold.clearTriggers();
     }
+
   });
 
 })();

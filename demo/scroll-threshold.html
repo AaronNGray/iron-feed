@@ -21,13 +21,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <link rel="import" href="../../polymer/polymer.html">
   <link rel="import" href="../../iron-flex-layout/iron-flex-layout.html">
-  <link rel="import" href="../../iron-scroll-threshold/iron-scroll-threshold.html">
   <link rel="import" href="../../iron-image/iron-image.html">
   <link rel="import" href="../../paper-styles/color.html">
   <link rel="import" href="../../paper-styles/typography.html">
   <link rel="import" href="../../app-layout/app-toolbar/app-toolbar.html">
-  <link rel="import" href="../../paper-spinner/paper-spinner.html">
-  <link rel="import" href="../../iron-ajax/iron-ajax.html">
   <link rel="import" href="../iron-feed.html">
 
   <style is="custom-style">
@@ -50,28 +47,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       z-index: 1;
       font-weight: bold;
       font-size: 18px;
-    }
-
-    .loadingIndicator {
-      text-align: center;
-      height: 40px;
-    }
-
-    .loadingIndicator paper-spinner {
-      width: 20px;
-      height: 20px;
-      margin-right: 10px;
-    }
-
-    iron-feed {
-      padding-top: 64px;
-      padding-bottom: 16px;
-      --iron-feed-items-container: {
-        max-width: 800px;
-        margin: auto;
-        margin-top: 60px;
-        margin-bottom: 10px;
-      };
     }
 
     .personItem {
@@ -123,14 +98,6 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
   <template is="dom-bind" id="app">
 
-    <iron-ajax id="ajax"
-      url="data/tester.json"
-      params='{"results": 20}'
-      handle-as="json"
-      loading="{{loadingPeople}}"
-      on-response="_didRespond">
-    </iron-ajax>
-
     <app-toolbar>
       <div main-title>Load data using iron-scroll-threshold</div>
     </app-toolbar>
@@ -152,38 +119,19 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       </template>
     </iron-feed>
 
-    <div class="loadingIndicator">
-      <paper-spinner active="{{loadingPeople}}"></paper-spinner> Fetching data
-    </div>
-
-    <!-- this element will load more data when the user scrolls down and reached the lower threshold -->
-    <iron-scroll-threshold id="scrollTheshold"
-      lower-threshold="500"
-      on-lower-threshold="_loadMoreData"
-      scroll-target="html">
-    </iron-scroll-threshold>
-
   </template>
 
   <script>
 
-    (function(scope) {
+    (function(document) {
+      'use strict';
 
-      scope._loadMoreData = function() {
-        scope.$.ajax.generateRequest();
-      };
+      // Grab a reference to our auto-binding template
+      // and give it some initial binding values
+      // Learn more about auto-binding templates at http://goo.gl/Dx1u2g
+      var app = document.querySelector('#app');
 
-      scope._didRespond = function(e) {
-        var people = e.detail.response;
-
-        people.forEach(function(person) {
-          scope.$.list.push('items', person);
-        });
-        // Clear the lower threshold so we can load more data when the user scrolls down again.
-        scope.$.scrollTheshold.clearTriggers();
-      };
-
-    })(document.querySelector('#app'));
+    })(document);
 
   </script>
 
