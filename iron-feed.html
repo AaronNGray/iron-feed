@@ -8,18 +8,18 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 -->
 
-<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+<script src="bower_components/webcomponentsjs/webcomponents-lite.js"></script>
 
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="bower_components/polymer/polymer.html">
 
-<link rel="import" href="../iron-scroll-threshold/iron-scroll-threshold.html">
+<link rel="import" href="bower_components/iron-scroll-threshold/iron-scroll-threshold.html">
 
-<link rel="import" href="../iron-resizable-behavior/iron-resizable-behavior.html">
-<link rel="import" href="../iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
-<link rel="import" href="../iron-scroll-target-behavior/iron-scroll-target-behavior.html">
+<link rel="import" href="bower_components/iron-resizable-behavior/iron-resizable-behavior.html">
+<link rel="import" href="bower_components/iron-a11y-keys-behavior/iron-a11y-keys-behavior.html">
+<link rel="import" href="bower_components/iron-scroll-target-behavior/iron-scroll-target-behavior.html">
 
-<link rel="import" href="../paper-spinner/paper-spinner.html">
-<link rel="import" href="../iron-ajax/iron-ajax.html">
+<link rel="import" href="bower_components/paper-spinner/paper-spinner.html">
+<link rel="import" href="bower_components/iron-ajax/iron-ajax.html">
 
 <!--
 
@@ -290,7 +290,8 @@ will only render 20.
     </style>
 
     <iron-ajax id="ajax"
-      url="{{url}}"
+      url="data/tester.json"
+      params="{{params}}
       handle-as="json"
       loading="{{loading}}"
       on-response="_didRespond">
@@ -336,6 +337,15 @@ will only render 20.
 
     properties: {
 
+      params: {
+        type: Object,
+        value: function() {
+          return {
+            start: 0,
+            limit: 25
+          };
+        }
+      },
       /**
        * An array containing items determining how many instances of the template
        * to stamp and that that each template instance should bind to.
@@ -437,7 +447,7 @@ will only render 20.
       },
 
       href: {
-        type: "polymer",
+        type: String,
         notify: true
       },
       chunk: {
@@ -445,7 +455,8 @@ will only render 20.
         value: 25
       },
       url: {
-        computed: 'computeUrl(href)'
+        computed: 'computeUrl(href)',
+        notify: true
       }
     },
 
@@ -1890,7 +1901,7 @@ will only render 20.
     },
 
     computeUrl: function(baseUrl) {
-      return [this.baseUrl, "?", "start=", this.items.length, "&", "limit=", this.chunk].join();
+      return [this.baseUrl, "?", "start=", this.$.items.length, "&", "limit=", this.$.chunk].join();
     },
 
     _loadMoreData: function() {
